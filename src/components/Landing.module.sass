@@ -1,0 +1,1387 @@
+@use 'varibales' as vars
+@use 'mixins' as mix
+
+
+
+.landing
+	@include mix.gridContainer(17)
+
+.isPassive
+	.exploreIcons span
+		&:nth-child(1)
+			transform: translate3d(0, 9.67vh, 0)
+
+		&:nth-child(2)
+			transform: translate3d(54%, calc(40% + 9.67vh), 0)
+
+	.guest
+		opacity: 0
+		transform: translate3d(0, 7.78vh, 0)
+
+	.captionContent
+		h1
+			transform: translate3d(0, 200px, 0)
+
+			span
+				opacity: 0
+				transform: translate3d(0, 100%, 0)
+
+	.description
+		transform: translate3d(0, 200px, 0)
+
+		span
+			opacity: 0
+			transform: translate3d(0, 10vh, 0)
+
+	.loginContent .loginButton
+		opacity: 0
+		transform: translate3d(0, 200px, 0)
+
+.caption
+	@include mix.innerGridContainer(7)
+	grid-area: 3 / 3 / 7 / 10
+	pointer-events: none
+
+.captionContent
+	@include mix.fullAbsolute
+	z-index: 20
+
+	h1
+		margin: 0
+		@include mix.responsiveHeightText($caption-text)
+		font-family: 'Circular Std'
+		font-weight: 900
+		line-height: 1.27
+		letter-spacing: -5px
+		overflow: hidden
+		transform: translate3d(0, 0, 0)
+		transition: opacity 1s $secondary-ease-in .1s
+
+		&:nth-child(2)
+			transition-delay: .2s
+
+			span
+				transition-delay: .2s
+
+		span
+			display: inline-block
+			opacity: 1
+			transform: translate3d(0, 0, 0)
+			transition: opacity 1s $secondary-ease-in .1s, transform 1s $secondary-ease-in .1s
+
+.listen
+	color: $green
+
+.description
+	padding: 15px 20vh 0 0
+	@include mix.responsiveHeightText($section-subcaption-text)
+	line-height: 2
+	transform: translate3d(0, 0, 0)
+	transition: transform 1s $secondary-ease-in .3s
+
+	span
+		display: inline-block
+		opacity: 1
+		transform: translate3d(0, 0, 0)
+		transition: opacity 1s $secondary-ease-in .3s, transform 1s $secondary-ease-in .3s
+
+.dots
+	position: absolute
+	left: -10vh
+	z-index: 15
+
+.login
+	@include mix.innerGridContainer(4)
+	grid-area: 7 / 3 / 8 / 7
+
+.loginContent
+	@include mix.fullAbsolute
+	z-index: 20
+
+	.loginButton
+		@include mix.fullCenter
+		width: 100%
+		height: 100%
+		border-radius: $medium-border-radius
+		background: $mild-green
+		color: $white
+		@include mix.responsiveHeightText($login-btn-text)
+		line-height: 1.33
+		letter-spacing: 0
+		transform: translate3d(0, 0, 0)
+		transition: opacity 1s $secondary-ease-in .5s, transform 1s $secondary-ease-in .5s
+
+		& > span
+			@include mix.scaleSvg
+			transform-origin: center right
+			margin-right: 5px
+
+.explore
+	@include mix.innerGridContainer(6)
+	grid-area: 10 / 1 / 11 / 7
+
+.exploreContent
+	@include mix.fullAbsolute
+	z-index: 20
+	display: grid
+	grid-template-columns: repeat(6, 1fr)
+	align-items: center
+
+.exploreAction
+	color: $green
+
+.exploreIcons
+	display: flex
+	justify-content: center
+
+	& > div
+		position: relative
+		height: 50px
+		width: 55px
+		@include mix.scaleSvg
+
+		& > span
+			display: inline-flex
+			justify-content: center
+			align-items: center
+			width: $explore-icon-dim
+			height: $explore-icon-dim
+			border-radius: 50%
+			border: calc(#{$xl-border} / 2) solid $black
+			position: absolute
+
+			&:nth-child(1)
+				background: linear-gradient(135.57deg, #C61780 0%, #A727EE 47%, #4360DE 100%)
+				transform: translate3d(0, 0, 0)
+				transition: .7s $secondary-ease-in .2s
+				z-index: 1
+
+			&:nth-child(2)
+				background: linear-gradient(134.4deg, #20AC9A 0%, #1DB954 52%, #91C040 100%)
+				transform: translate3d(54%, 40%, 0)
+				transition: .8s $secondary-ease-in
+
+		svg
+			width: calc(#{$explore-icon-dim} / 2)
+			height: calc(#{$explore-icon-dim} / 2)
+
+.guest
+	grid-area: 1 / 2 / 1 / 7
+	@include mix.responsiveHeightText($sm-title-text)
+	line-height: 1.44
+	letter-spacing: -0.5px
+	font-family: 'Circular Std'
+	font-weight: 400
+	transform: translate3d(0, 0, 0)
+	transition: opacity .7s $secondary-ease-in .3s, translate .7s $secondary-ease-in .3s
+
+	& > span:not(.exploreAction)
+		pointer-events: none
+
+.artistsCarouselContainer
+	@include mix.innerGridContainer(6)
+	grid-area: 1 / 10 / 10 / 16
+
+.isPassiveCarousel
+	.artistCard
+		clip-path: inset(0px 100% 100% 0px round $medium-border-radius)
+
+	.audioToggleBg
+		clip-path: circle(100%)
+
+	.artistLink > span
+		transform: scale3d(0, 0, 0)
+
+	.artistName
+		transform: translate3d(0, 145px, 0)
+
+	.artistGenres > span
+		transform: translate3d(0, 145px, 0)
+
+	.ArtistFeaturedTrack
+		clip-path: inset(22.2vh 100% 8.8vh 0px round 0 0 12px 12px)
+
+	.artistFeaturedAlbumCover
+		transform: translate3d(-22.2vh, 22.2vh, 0)
+
+		& > div
+			transform: scale3d(4, 4, 4)
+
+	.featuredTrackNameLabel, .featuredTrackName
+		transform: translate3d(0, 72px, 0)
+
+	.artistPopularity
+		clip-path: inset(100% 100% 0px 0px round $medium-border-radius)
+		transform: translate3d(0, 100px, 0)
+
+		& > div > span
+			transform: translate3d(0, 3px, 0) scale3d(0, 0, 0)
+
+		h4, p
+			transform: translate3d(0, 8.8vh, 0)
+
+	.explorePlaylist
+		clip-path: circle(0% at 50% 8%)
+
+		.danceIcon svg
+			transform: scale3d(15, 15, 15)
+
+	.ovalDash
+		transform: translate3d(0, 0, 0) rotate(38deg)
+
+		circle
+			stroke-width: 0
+
+.carouselEntrance
+	pointer-events: none
+
+	.artistPopularity > div > span
+		transform: translate3d(0, 3px, 0) scale3d(1, 1, 1)
+		transition: 1s $secondary-ease-in 1.2s
+
+.artistCard
+	position: absolute
+	top: 20vh
+	right: 20vh
+	bottom: 20vh
+	left: 0
+	z-index: 20
+	clip-path: inset(0px 0px 0px 0px round $medium-border-radius)
+	overflow: hidden
+	padding: 20px
+	transition: clip-path .5s $secondary-ease-in .3s
+
+	&.loadingNextArtist
+		pointer-events: none
+
+	@include mix.before
+		@include mix.fullAbsolute
+		background: linear-gradient(205.49deg, rgba(17,17,18,0) 0%, rgba(17,17,18,0.7) 100%)
+		z-index: 4
+		opacity: 1
+		transition: .5s $primary-ease
+
+	@include mix.after
+		@include mix.fullAbsolute
+		background: linear-gradient(45.94deg, rgba(26,27,28,0.6) 0%, rgba(26,27,28,0.6) 99%)
+		z-index: 4
+		opacity: 0
+		transition: .5s $primary-ease
+
+	&:hover
+		&:before
+			opacity: 0
+
+		&:after
+			transform: translateZ(0)
+			opacity: 1
+
+		.artistCover
+			transform: scale3d(1.07, 1.07, 1.07)
+			transition: transform 1s $secondary-ease-in
+
+		& ~ .carouselControl circle:last-child
+			animation-play-state: paused
+
+.artistCover
+	position: absolute
+	top: 0
+	left: 0
+	object-fit: cover
+	object-position: center
+	width: 40vh
+	height: 50vh
+	transform: scale(1)
+	transition: transform .5s $ease-both
+	z-index: -2
+
+.animateArtistIn
+	animation: artist-cover-in 1.8s
+
+.artistLink
+	position: absolute
+	top: 20px
+	left: 20px
+	mix-blend-mode: overlay
+	transform: translateZ(0)
+	z-index: 30
+
+	& > span
+		transform: scale3d(1, 1, 1)
+		transition: 1s $secondary-ease-in .3s
+
+.artistTitile
+	position: absolute
+	right: 55px
+	bottom: 20px
+	left: 30px
+	z-index: 10
+
+.artistName
+	display: inline-block
+	@include mix.responsiveHeightText($xl-large-text)
+	line-height: 1.26
+	letter-spacing: -1.39px
+	font-family: 'Circular Std'
+	font-weight: 700
+	display: flex
+	flex-direction: column
+	transform: translate3d(0, 0, 0)
+	transition: transform 1s $secondary-ease-in .5s
+
+.artistGenres
+	display: inline-block
+	width: 100%
+	margin-top: 5px
+	padding-right: 15px
+
+	span
+		background: transparentize($white, .9)
+		border-radius: $regular-border-radius
+		display: inline-block
+		padding: 8px 20px
+		@include mix.responsiveHeightText($regular-text)
+		line-height: 1.5
+		font-weight: 500
+		transform: translate3d(0, 0, 0)
+		overflow: hidden
+		transition: transform 1s $secondary-ease-in .6s
+
+	&:nth-child(1)
+		margin: 10px 10px 0 0
+		max-width: 100%
+		@include mix.ellipsis
+
+		&:nth-child(2)
+			margin-top: 5px
+			background: $white
+			color: $black
+			transition-delay: .7s
+
+.nextArtistDetails
+	@include mix.fullAbsolute
+	z-index: 10
+	clip-path: circle(15px at calc(100% - 40px) calc(100% - 40px))
+	animation: next-artist-in .9s $secondary-ease-in .2s forwards
+
+	@include mix.before
+		@include mix.fullAbsolute
+		background: linear-gradient(205.49deg, rgba(17,17,18,0) 0%, rgba(17,17,18,0.7) 100%)
+		z-index: 4
+		transform: translateZ(0)
+
+	.artistCover
+		animation: next-artist-cover-in 1.2s $secondary-ease-in .2s forwards
+
+	.artistName
+		transform: translate3d(0, 200px, 0)
+		opacity: 0
+		animation: swipe-up .7s $secondary-ease-in .2s forwards
+
+	.artistGenres
+		& > span
+			transform: translate3d(0, 200px, 0)
+			opacity: 0
+			animation: swipe-up .7s $secondary-ease-in .3s forwards
+
+			&:nth-child(2)
+				animation-delay: .4s
+
+.audioToggleBg
+	position: absolute
+	top: -10vh
+	left: -20vh
+	width: 111.11vh
+	height: 111.11vh
+	background: $black
+	clip-path: circle(15px at calc(60vh - 40px) calc(60vh - 40px))
+	transition: 1s $secondary-ease-in .3s
+	z-index: 95
+
+.audioToggle
+	position: absolute
+	right: 15px
+	bottom: 15px
+	@include mix.scaleWidthHeight($expl-artist-card-control-dim, $expl-artist-card-control-dim)
+	border-radius: 50%
+	@include mix.fullCenter
+	background: $black
+	z-index: 100
+
+	& > span
+		width: $expl-artist-card-audio-icon-dim
+@use 'varibales' as vars
+@use 'mixins' as mix
+
+
+
+.landing
+	@include mix.gridContainer(17)
+
+.isPassive
+	.exploreIcons span
+		&:nth-child(1)
+			transform: translate3d(0, 9.67vh, 0)
+
+		&:nth-child(2)
+			transform: translate3d(54%, calc(40% + 9.67vh), 0)
+
+	.guest
+		opacity: 0
+		transform: translate3d(0, 7.78vh, 0)
+
+	.captionContent
+		h1
+			transform: translate3d(0, 200px, 0)
+
+			span
+				opacity: 0
+				transform: translate3d(0, 100%, 0)
+
+	.description
+		transform: translate3d(0, 200px, 0)
+
+		span
+			opacity: 0
+			transform: translate3d(0, 10vh, 0)
+
+	.loginContent .loginButton
+		opacity: 0
+		transform: translate3d(0, 200px, 0)
+
+.caption
+	@include mix.innerGridContainer(7)
+	grid-area: 3 / 3 / 7 / 10
+	pointer-events: none
+
+.captionContent
+	@include mix. fullAbsolute
+	z-index: 20
+
+	h1
+		margin: 0
+		@include mix. responsiveHeightText($caption-text)
+		font-family: 'Circular Std'
+		font-weight: 900
+		line-height: 1.27
+		letter-spacing: -5px
+		overflow: hidden
+		transform: translate3d(0, 0, 0)
+		transition: opacity 1s $secondary-ease-in .1s
+
+		&:nth-child(2)
+			transition-delay: .2s
+
+			span
+				transition-delay: .2s
+
+		span
+			display: inline-block
+			opacity: 1
+			transform: translate3d(0, 0, 0)
+			transition: opacity 1s $secondary-ease-in .1s, transform 1s $secondary-ease-in .1s
+
+.listen
+	color: $green
+
+.description
+	padding: 15px 20vh 0 0
+	@include mix. responsiveHeightText($section-subcaption-text)
+	line-height: 2
+	transform: translate3d(0, 0, 0)
+	transition: transform 1s $secondary-ease-in .3s
+
+	span
+		display: inline-block
+		opacity: 1
+		transform: translate3d(0, 0, 0)
+		transition: opacity 1s $secondary-ease-in .3s, transform 1s $secondary-ease-in .3s
+
+.dots
+	position: absolute
+	left: -10vh
+	z-index: 15
+
+.login
+	@include mix. innerGridContainer(4)
+	grid-area: 7 / 3 / 8 / 7
+
+.loginContent
+	@include mix. fullAbsolute
+	z-index: 20
+
+	.loginButton
+		@include mix. fullCenter
+		width: 100%
+		height: 100%
+		border-radius: $medium-border-radius
+		background: $mild-green
+		color: $white
+		@include mix. responsiveHeightText($login-btn-text)
+		line-height: 1.33
+		letter-spacing: 0
+		transform: translate3d(0, 0, 0)
+		transition: opacity 1s $secondary-ease-in .5s, transform 1s $secondary-ease-in .5s
+
+		& > span
+			@include mix. scaleSvg
+			transform-origin: center right
+			margin-right: 5px
+
+.explore
+	@include mix. innerGridContainer(6)
+	grid-area: 10 / 1 / 11 / 7
+
+.exploreContent
+	@include mix. fullAbsolute
+	z-index: 20
+	display: grid
+	grid-template-columns: repeat(6, 1fr)
+	align-items: center
+
+.exploreAction
+	color: $green
+
+.exploreIcons
+	display: flex
+	justify-content: center
+
+	& > div
+		position: relative
+		height: 50px
+		width: 55px
+		@include mix. scaleSvg
+
+		& > span
+			display: inline-flex
+			justify-content: center
+			align-items: center
+			width: $explore-icon-dim
+			height: $explore-icon-dim
+			border-radius: 50%
+			border: calc(#{$xl-border} / 2) solid $black
+			position: absolute
+
+			&:nth-child(1)
+				background: linear-gradient(135.57deg, #C61780 0%, #A727EE 47%, #4360DE 100%)
+				transform: translate3d(0, 0, 0)
+				transition: .7s $secondary-ease-in .2s
+				z-index: 1
+
+			&:nth-child(2)
+				background: linear-gradient(134.4deg, #20AC9A 0%, #1DB954 52%, #91C040 100%)
+				transform: translate3d(54%, 40%, 0)
+				transition: .8s $secondary-ease-in
+
+		svg
+			width: calc(#{$explore-icon-dim} / 2)
+			height: calc(#{$explore-icon-dim} / 2)
+
+.guest
+	grid-area: 1 / 2 / 1 / 7
+	@include mix. responsiveHeightText($sm-title-text)
+	line-height: 1.44
+	letter-spacing: -0.5px
+	font-family: 'Circular Std'
+	font-weight: 400
+	transform: translate3d(0, 0, 0)
+	transition: opacity .7s $secondary-ease-in .3s, translate .7s $secondary-ease-in .3s
+
+	& > span:not(.exploreAction)
+		pointer-events: none
+
+.artistsCarouselContainer
+	@include mix. innerGridContainer(6)
+	grid-area: 1 / 10 / 10 / 16
+
+.isPassiveCarousel
+	.artistCard
+		clip-path: inset(0px 100% 100% 0px round $medium-border-radius)
+
+	.audioToggleBg
+		clip-path: circle(100%)
+
+	.artistLink > span
+		transform: scale3d(0, 0, 0)
+
+	.artistName
+		transform: translate3d(0, 145px, 0)
+
+	.artistGenres > span
+		transform: translate3d(0, 145px, 0)
+
+	.ArtistFeaturedTrack
+		clip-path: inset(22.2vh 100% 8.8vh 0px round 0 0 12px 12px)
+
+	.artistFeaturedAlbumCover
+		transform: translate3d(-22.2vh, 22.2vh, 0)
+
+		& > div
+			transform: scale3d(4, 4, 4)
+
+	.featuredTrackNameLabel, .featuredTrackName
+		transform: translate3d(0, 72px, 0)
+
+	.artistPopularity
+		clip-path: inset(100% 100% 0px 0px round $medium-border-radius)
+		transform: translate3d(0, 100px, 0)
+
+		& > div > span
+			transform: translate3d(0, 3px, 0) scale3d(0, 0, 0)
+
+		h4, p
+			transform: translate3d(0, 8.8vh, 0)
+
+	.explorePlaylist
+		clip-path: circle(0% at 50% 8%)
+
+		.danceIcon svg
+			transform: scale3d(15, 15, 15)
+
+	.ovalDash
+		transform: translate3d(0, 0, 0) rotate(38deg)
+
+		circle
+			stroke-width: 0
+
+.carouselEntrance
+	pointer-events: none
+
+	.artistPopularity > div > span
+		transform: translate3d(0, 3px, 0) scale3d(1, 1, 1)
+		transition: 1s $secondary-ease-in 1.2s
+
+.artistCard
+	position: absolute
+	top: 20vh
+	right: 20vh
+	bottom: 20vh
+	left: 0
+	z-index: 20
+	clip-path: inset(0px 0px 0px 0px round $medium-border-radius)
+	overflow: hidden
+	padding: 20px
+	transition: clip-path .5s $secondary-ease-in .3s
+
+	&.loadingNextArtist
+		pointer-events: none
+
+	@include mix. before
+		@include mix. fullAbsolute
+		background: linear-gradient(205.49deg, rgba(17,17,18,0) 0%, rgba(17,17,18,0.7) 100%)
+		z-index: 4
+		opacity: 1
+		transition: .5s $primary-ease
+
+	@include mix. after
+		@include mix. fullAbsolute
+		background: linear-gradient(45.94deg, rgba(26,27,28,0.6) 0%, rgba(26,27,28,0.6) 99%)
+		z-index: 4
+		opacity: 0
+		transition: .5s $primary-ease
+
+	&:hover
+		&:before
+			opacity: 0
+
+		&:after
+			transform: translateZ(0)
+			opacity: 1
+
+		.artistCover
+			transform: scale3d(1.07, 1.07, 1.07)
+			transition: transform 1s $secondary-ease-in
+
+		& ~ .carouselControl circle:last-child
+			animation-play-state: paused
+
+.artistCover
+	position: absolute
+	top: 0
+	left: 0
+	object-fit: cover
+	object-position: center
+	width: 40vh
+	height: 50vh
+	transform: scale(1)
+	transition: transform .5s $ease-both
+	z-index: -2
+
+.animateArtistIn
+	animation: artist-cover-in 1.8s
+
+.artistLink
+	position: absolute
+	top: 20px
+	left: 20px
+	mix-blend-mode: overlay
+	transform: translateZ(0)
+	z-index: 30
+
+	& > span
+		transform: scale3d(1, 1, 1)
+		transition: 1s $secondary-ease-in .3s
+
+.artistTitile
+	position: absolute
+	right: 55px
+	bottom: 20px
+	left: 30px
+	z-index: 10
+
+.artistName
+	display: inline-block
+	@include mix. responsiveHeightText($xl-large-text)
+	line-height: 1.26
+	letter-spacing: -1.39px
+	font-family: 'Circular Std'
+	font-weight: 700
+	display: flex
+	flex-direction: column
+	transform: translate3d(0, 0, 0)
+	transition: transform 1s $secondary-ease-in .5s
+
+.artistGenres
+	display: inline-block
+	width: 100%
+	margin-top: 5px
+	padding-right: 15px
+
+	span
+		background: transparentize($white, .9)
+		border-radius: $regular-border-radius
+		display: inline-block
+		padding: 8px 20px
+		@include mix. responsiveHeightText($regular-text)
+		line-height: 1.5
+		font-weight: 500
+		transform: translate3d(0, 0, 0)
+		overflow: hidden
+		transition: transform 1s $secondary-ease-in .6s
+
+	&:nth-child(1)
+		margin: 10px 10px 0 0
+		max-width: 100%
+		@include mix. ellipsis
+
+		&:nth-child(2)
+			margin-top: 5px
+			background: $white
+			color: $black
+			transition-delay: .7s
+
+.nextArtistDetails
+	@include mix. fullAbsolute
+	z-index: 10
+	clip-path: circle(15px at calc(100% - 40px) calc(100% - 40px))
+	animation: next-artist-in .9s $secondary-ease-in .2s forwards
+
+	@include mix. before
+		@include mix. fullAbsolute
+		background: linear-gradient(205.49deg, rgba(17,17,18,0) 0%, rgba(17,17,18,0.7) 100%)
+		z-index: 4
+		transform: translateZ(0)
+
+	.artistCover
+		animation: next-artist-cover-in 1.2s $secondary-ease-in .2s forwards
+
+	.artistName
+		transform: translate3d(0, 200px, 0)
+		opacity: 0
+		animation: swipe-up .7s $secondary-ease-in .2s forwards
+
+	.artistGenres
+		& > span
+			transform: translate3d(0, 200px, 0)
+			opacity: 0
+			animation: swipe-up .7s $secondary-ease-in .3s forwards
+
+			&:nth-child(2)
+				animation-delay: .4s
+
+.audioToggleBg
+	position: absolute
+	top: -10vh
+	left: -20vh
+	width: 111.11vh
+	height: 111.11vh
+	background: $black
+	clip-path: circle(15px at calc(60vh - 40px) calc(60vh - 40px))
+	transition: 1s $secondary-ease-in .3s
+	z-index: 95
+
+.audioToggle
+	position: absolute
+	right: 15px
+	bottom: 15px
+	@include mix. scaleWidthHeight($expl-artist-card-control-dim, $expl-artist-card-control-dim)
+	border-radius: 50%
+	@include mix. fullCenter
+	background: $black
+	z-index: 100
+
+	& > span
+		width: $expl-artist-card-audio-icon-dim
+		height: $expl-artist-card-audio-icon-dim
+		@include mix. scaleSvg
+
+.cardGlow
+	position: absolute
+	top: 10vh
+	right: 10vh
+	bottom: 10vh
+	left: -10vh
+	background: $white-glow, $white-glow, $white-glow, $white-glow
+	background-repeat: no-repeat
+	background-size: 20vh 20vh, 20vh 20vh, 20vh 20vh, 20vh 20vh
+	background-position: top left, top right, bottom left, bottom right
+	opacity: 0
+	transition: .4s $ease-both
+	pointer-events: none
+
+.cardGlowActive
+	opacity: 1
+	transition: .5s $primary-ease
+
+.ArtistFeaturedTrack
+	position: absolute
+	top: calc(14vh + 20px)
+	left: 33vh
+	width: 22.2vh
+	display: flex
+	flex-direction: column
+	z-index: 30
+	clip-path: inset(0px 0px 0px 0px round 0 0 $medium-border-radius $medium-border-radius)
+	transform: translateZ(0)
+	transition: clip-path .7s $secondary-ease-in .5s
+	overflow: hidden
+
+.loadNextTrack
+	.artistFeaturedAlbumCover
+		animation: swipe-down .7s $secondary-ease-in forwards
+
+	.trackDetails
+		animation: fade-out .5s $secondary-ease-in forwards
+
+.artistFeaturedAlbumCover
+	background: $dark-ash
+	width: 22.2vh
+	height: 22.2vh
+	transform: translate3d(0, 0, 0)
+	transform-origin: bottom left
+	overflow: hidden
+	transition: transform .7s $secondary-ease-in .5s
+
+	& > div
+		width: 100%
+		height: 100%
+		transform: scale3d(1, 1, 1)
+		transform-origin: bottom left
+		transition: transform 1.5s $secondary-ease-in .5s
+
+		& > div
+			width: 100%
+			height: 100%
+			background-size: cover
+			transform: translateZ(0)
+
+.nextArtistFeaturedAlbumCover
+	position: absolute
+	top: 0
+	left: 0
+	width: 22.2vh
+	height: 22.2vh
+	transform: translate3d(0, 200px, 0)
+	animation: swipe-up .7s $secondary-ease-in .1s forwards
+
+	& > div
+		width: 100%
+		height: 100%
+		background-size: cover
+
+.featuredTrackData
+	position: relative
+	height: 8.8vh
+	background: $dark-ash
+	z-index: 3
+
+	& > div
+		height: 100%
+		padding: 5px 18px
+		display: flex
+		flex-direction: column
+		justify-content: center
+
+.nextArtistTrackDetails
+	@include mix. fullAbsolute
+	transform: translate3d(0, 100%, 0)
+	animation: swipe-up .7s $secondary-ease-in .2s forwards
+
+.featuredTrackNameLabel
+	color: $mild-gray
+	@include mix. responsiveHeightText($medium-text)
+	line-height: 1.35
+	margin-bottom: 4px
+	transform: translate3d(0, 0, 0)
+	transition: transform 1s $secondary-ease-in 1s
+
+.featuredTrackName
+	@include mix. responsiveHeightText($sm-title-text + 2)
+	line-height: 1.25
+	letter-spacing: -0.56px
+	font-family: 'Circular Std'
+	font-weight: 700
+	@include mix. ellipsis
+	transform: translate3d(0, 0, 0)
+	transition: transform 1s $secondary-ease-in 1.1s
+
+.ovalDash
+	position: absolute
+	top: -5.6vh
+	left: -3.75vh
+	transform: translate3d(0, 0, 0) rotate(128deg)
+	transition: transform 1.4s $pop-alt .4s
+	z-index: 15
+	pointer-events: none
+
+	svg
+		width: 67.78vh
+		height: 67.78vh
+
+	circle
+		stroke-width: 4
+		transition: stroke-width 1.4s $pop-alt .4s
+
+.explorePlaylist
+	position: absolute
+	top: 10vh
+	left: 30vh
+	@include mix. scaleWidthHeight(360px, 360px)
+	background: $green
+	text-align: center
+	clip-path: circle(8% at 50% 8%)
+	transform: translate3d(-50%, -8%, 0)
+	transition: clip-path .5s $secondary-ease-in 1.8s
+	pointer-events: none
+	z-index: 45
+
+	&.expandable
+		pointer-events: all
+		transform-origin: top center
+		transition: clip-path .5s $primary-ease, background .5s $primary-ease
+
+		.danceIcon svg
+			transition: .5s $primary-ease
+			transform-origin: center 9.5%
+
+		& ~ .ovalDash
+			transition: .5s $primary-ease
+
+			circle
+				transition: .5s $primary-ease
+
+	&:hover
+		clip-path: circle(48% at 50% 48%)
+		background: $white
+		transition: clip-path .5s $secondary-ease-in, background .5s $secondary-ease-in
+
+		.danceIcon svg
+			opacity: 0.05
+			transform: scale3d(20, 20, 20)
+			transition: 1s $secondary-ease-in
+
+			path
+				fill: $mild-green
+				transition: 1s $secondary-ease-in
+
+		.playlistCover
+			opacity: 1
+			transform: translate3d(0, 0, 0) scale3d(1, 1, 1)
+			transition: .7s $secondary-ease-in
+
+		p
+			opacity: 0.8
+			transform: translate3d(0, 0, 0)
+			transition: .7s $secondary-ease-in .2s
+
+		h3
+			opacity: 1
+			transform: translate3d(0, 0, 0)
+			transition: .7s $secondary-ease-in .3s
+
+		.playlistPlay
+			opacity: 1
+			transform: translate3d(0, 0, 0)
+			transition: .7s $secondary-ease-in .4s
+
+		& ~ .ovalDash
+			transform: translate3d(-3%, -6%, 0) rotate(98deg)
+			transition: 1s $secondary-ease-in
+
+			circle
+				transition: 1s $secondary-ease-in
+
+	p
+		position: relative
+		margin: 0.75em 0 0
+		color: $black
+		@include mix. responsiveHeightText($regular-text)
+		line-height: 1.313
+		font-weight: 400
+		opacity: 0
+		transform: translate3d(0, 200px, 0)
+		transition: .5s $primary-ease
+
+	h3
+		position: relative
+		margin: auto
+		@include mix. scaleWidth($explore-playlist-title-width)
+		color: $black
+		@include mix. responsiveHeightText($explore-playlist-title-text)
+		font-family: 'Circular Std'
+		letter-spacing: -1.34px
+		font-weight: 700
+		line-height: 1.267
+		opacity: 0
+		transform: translate3d(0, 200px, 0)
+		transition: .5s $primary-ease
+
+.danceIcon
+	position: absolute
+	top: 3.7%
+	left: 50%
+	transform: translate(-50%, 0)
+
+	svg
+		@include mix. scaleWidthHeight(30px, 30px)
+		opacity: 1
+		transform: scale3d(1, 1, 1)
+		transition: .7s $secondary-ease-in 1.8s
+		transform-origin: top center
+
+		path
+			fill: $pure-black
+			transition: .5s $primary-ease
+
+.playlistPlay
+	position: relative
+	margin-top: 10px
+	@include mix. scaleWidthHeight(40px, 40px)
+	background: $mild-green
+	display: inline-flex
+	justify-content: center
+	align-items: center
+	border-radius: 50%
+	opacity: 0
+	transform: translate3d(0, 200px, 0)
+	transition: .5s $primary-ease
+
+	svg
+		@include mix. scaleWidthHeight(20px, 20px)
+
+.playlistCover
+	position: relative
+	margin: 11.11% auto 0
+	@include mix. scaleWidthHeight($explore-playlist-cover-dim, $explore-playlist-cover-dim)
+	background-size: cover
+	background-position: center
+	border-radius: $small-border-radius
+	opacity: 0
+	transform: translate3d(0, 200px, 0) scale3d(2.5, 2.5, 2.5)
+	transition: .5s $primary-ease
+
+.artistPopularityContainer
+	position: absolute
+	top: calc(47.5vh + 20px)
+	right: 0
+	z-index: 30
+
+.artistPopularity
+	@include mix. scaleWidth($expl-title-card-width)
+	height: 10vh
+	background: $dark-ash
+	clip-path: inset(0px 0px 0px 0px round $medium-border-radius)
+	transform: translate3d(0, 0, 0)
+	transition: clip-path 1s $secondary-ease-in .5s, transform 1s $secondary-ease-in .5s
+
+	& > div
+		height: 100%
+		display: flex
+		align-items: center
+		padding: 20px
+
+		& > span
+			@include mix. scaleWidth(50px)
+			transform: translateY(3px)
+			animation: popularity-icon-scale-up .8s $secondary-ease-in
+			transform-origin: 35% center
+
+		h4
+			margin: 0
+			color: $mild-gray
+			@include mix. responsiveHeightText($regular-text)
+			line-height: 1.3
+			transform: translate3d(0, 0, 0)
+			transition: transform 1s $secondary-ease-in 1.3s
+
+		p
+			@include mix. responsiveHeightText($title-card-text)
+			font-family: 'Circular Std'
+			font-weight: 700
+			line-height: 1.25
+			transform: translate3d(0, 0, 0)
+			transition: transform 1s $secondary-ease-in 1.4s
+
+	.nextArtistPopularity
+		@include mix. fullAbsolute
+
+		h4, p
+			transform: translate3d(0, 8vh, 0)
+			opacity: 0
+			animation: swipe-up .7s $secondary-ease-in .4s forwards
+
+		p
+			animation-delay: .5s
+
+.loadNextPopularity
+	.currentArtistPopularity
+		& > span
+			opacity: 0
+
+		& > div
+			animation: fade-out .5s $secondary-ease-in forwards
+
+.currentArtistPopularity
+	& > span
+		transition: .5s $secondary-ease-in
+
+.carouselControl
+	position: absolute
+	bottom: 10vh
+	left: -5vh
+	width: 50vh
+	display: flex
+	justify-content: space-between
+	align-items: center
+	transform: translate3d(0, 50%, 0)
+	z-index: 15
+
+.loadNextArtist
+	.controlArtist
+		&:first-of-type > div
+			animation: none
+
+		&:last-of-type > div
+			animation-name: swipe-left-scale-up
+
+		&:nth-of-type(2) > div
+			animation-name: swipe-left-scale-down
+
+		& > div
+			animation: swipe-left .7s $secondary-ease-in .1s forwards
+
+		circle:last-child
+			stroke-dasharray: 252.1, 252.1
+			opacity: 0
+
+.loadPreviousArtist
+	.controlArtist
+		&:last-of-type > div
+			animation: none
+
+		&:first-of-type > div
+			animation-name: swipe-right-scale-up
+
+		&:nth-last-of-type(2) > div
+			animation-name: swipe-right-scale-down
+
+		& > div
+			animation: swipe-right .7s $secondary-ease-in .1s forwards
+
+		circle:last-child
+			stroke-dasharray: 252.1, 252.1
+			opacity: 0
+
+.carouselChevron
+	position: absolute
+	@include mix. scaleWidthHeight($expl-carousel-chevron-ring-dim, $expl-carousel-chevron-ring-dim)
+	@include mix. fullCenter
+	background: $black
+	border: $regular-border solid transparentize($white, .8)
+	border-radius: 50%
+	transition: opacity 1s $secondary-ease-in, transform 1s $secondary-ease-in
+	z-index: 5
+
+	&:first-child
+		left: 5vh
+		transform: translate3d(-50%, 0, 0)
+		transition-delay: .3s
+
+		svg
+			transition-delay: .3s
+
+	&:last-child
+		right: 5vh
+		transform: translate3d(50%, 0, 0)
+		transition-delay: .45s
+
+		svg
+			transition-delay: .45s
+
+	svg
+		@include mix. scaleWidthHeight(26px, 26px)
+		transition: transform 1s $secondary-ease-in
+
+.passiveChevron
+	opacity: 0
+
+	&:first-child
+		transform: translate3d(calc(-50% + 20px), 0, 0)
+
+		svg
+			transform: scale3d(0, 0, 0) translate3d(-20px, 0, 0)
+
+	&:last-child
+		transform: translate3d(calc(50% - 20px), 0, 0)
+
+		svg
+			transform: scale3d(0, 0, 0) translate3d(-20px, 0, 0)
+
+.controlArtist
+	@include mix. fullCenter
+	width: 10vh
+	height: 10vh
+
+	& > div
+		transform: translate3d(0, 0, 0) scale3d(1, 1, 1)
+		transition: transform .7s $secondary-ease-in .3s
+
+	&:nth-of-type(2) > div
+		transition-delay: .4s
+
+	&:nth-of-type(4) > div
+		transition-delay: .6s
+
+	&:first-of-type, &:last-of-type
+		& > div
+			transform: translate3d(0, 0, 0) scale3d(0, 0, 0)
+
+	svg
+		position: absolute
+		@include mix. scaleSvg
+		opacity: 1
+		transition: .5s linear
+
+	circle:last-child
+		animation: explore-progress 2.9s linear
+		transition: .1s linear, opacity .3s linear .3s
+
+.passiveControl
+	& > div
+		transform: translate3d(0, 0, 0) scale3d(0, 0, 0)
+
+	&:nth-of-type(2) > div
+		transform: translate3d(10vh, 0, 0) scale3d(0, 0, 0)
+
+	&:nth-of-type(4) > div
+		transform: translate3d(-10vh, 0, 0) scale3d(0, 0, 0)
+
+.passiveRing
+	svg
+		opacity: 0
+
+	circle:last-child
+		animation: none
+
+.carouselArtistImage
+	@include mix. scaleWidthHeight($expl-carousel-control-artist-dim, $expl-carousel-control-artist-dim)
+	background-size: cover
+	background-position: center
+	clip-path: circle(48%)
+
+@keyframes explore-progress
+	from
+		stroke-dasharray: 0, 252.1
+
+	to
+		stroke-dasharray: 244, 252.1
+
+@keyframes artist-cover-in
+	0%
+		transform: scale3d(2.22, 2.22, 2.2)
+
+	16.67%
+		transform: scale3d(2.2, 2.22, 2.2)
+		animation-timing-function: $secondary-ease-in
+
+	100%
+		transform: scale3d(1, 1, 1)
+
+@keyframes next-artist-in
+	from
+		clip-path: circle(15px at calc(100% - 40px) calc(100% - 40px))
+
+	to
+		clip-path: circle(100%)
+
+@keyframes next-artist-cover-in
+	from
+		transform: scale3d(2.22, 2.22, 2.22)
+
+	to
+		transform: scale3d(1, 1, 1)
+
+@keyframes swipe-up
+	to
+		transform: translate(0, 0)
+		opacity: 1
+
+@keyframes swipe-down
+	to
+		transform: translate(0, 200px)
+
+@keyframes fade-out
+	to
+		opacity: 0
+
+@keyframes fade-out
+	to
+		opacity: 0
+
+@keyframes swipe-left
+	to
+		transform: translate3d(-10vh, 0, 0)
+
+@keyframes swipe-left-scale-down
+	to
+		transform: translate3d(-10vh, 0, 0) scale3d(0, 0, 0)
+
+@keyframes swipe-left-scale-up
+	to
+		transform: translate3d(-10vh, 0, 0) scale3d(1, 1, 1)
+
+@keyframes swipe-right
+	to
+		transform: translate3d(10vh, 0, 0)
+
+@keyframes swipe-right-scale-down
+	to
+		transform: translate3d(10vh, 0, 0) scale3d(0, 0, 0)
+
+@keyframes swipe-right-scale-up
+	to
+		transform: translate3d(10vh, 0, 0) scale3d(1, 1, 1)
+
+@keyframes popularity-icon-scale-up
+	0%
+		opacity: 1
+		transform: scale(0) translateY(3px)
+
+	65%
+		opacity: 1
+		transform: scale(1) translateY(3px)
+
+	100%
+		opacity: 1
+
+

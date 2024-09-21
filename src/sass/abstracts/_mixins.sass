@@ -1,0 +1,323 @@
+// Font face
+@mixin fontFace($family, $weight, $fileName, $style: normal)
+    @font-face
+        font-family: $family
+        font-style: $style
+        font-weight: $weight
+        font-display: block
+        src: url('../../shared/fonts/#{$fileName}.eot?#iefix') format('embedded-opentype'), url('../../shared/fonts/#{$fileName}.woff') format('woff'), url('../../shared/fonts/#{$fileName}.ttf') format('truetype')
+
+// Center immediate child both vertically and horizontally
+@mixin fullCenter
+    display: flex
+    justify-content: center
+    align-items: center
+
+@mixin fullAbsolute
+    position: absolute
+    top: 0
+    left: 0
+    bottom: 0
+    right: 0
+
+// Apply media query for specied breakpoint
+@mixin respondTo($breakpoint)
+    @if $breakpoint == "size-xs"
+        @media (min-width: #{$size-xs})
+            @content
+
+    @else if $breakpoint == "size-sm"
+        @media (min-width: #{$size-sm})
+            @content
+
+    @else if $breakpoint == "size-md"
+        @media (min-width: #{$size-md})
+            @content
+
+    @else if $breakpoint == "size-lg"
+        @media (min-width: #{$size-lg})
+            @content
+
+    @else if $breakpoint == "size-xl"
+        @media (min-width: #{$size-xl})
+            @content
+
+    @else if $breakpoint == "size-retina"
+        @media (min-width: #{$size-retina})
+            @content
+
+    @else if $breakpoint == "height-md"
+        @media (min-height: #{$height-md})
+            @content
+
+    @else if $breakpoint == "height-lg"
+        @media (min-height: #{$height-lg})
+            @content
+
+    @else if $breakpoint == "height-xl"
+        @media (min-height: #{$height-xl})
+            @content
+
+// scale svg relative to view height
+@mixin scaleSvg
+    transform: scale($h-sm-multiplier)
+
+    @include respondTo('height-md')
+        transform: scale($h-md-multiplier)
+
+    @include respondTo('height-lg')
+        transform: scale($h-lg-multiplier)
+
+    @include respondTo('height-xl')
+        transform: scale($h-xl-multiplier)
+
+// set width and height against view height
+@mixin scaleWidthHeight($width, $height)
+    @include scaleWidth($width)
+    @include scaleHeight($height)
+
+// set width against view height
+@mixin scaleWidth($width, $fixed: 0)
+    width: round($width * $h-sm-multiplier + $fixed)
+
+    @include respondTo('height-md')
+        width: round($width * $h-md-multiplier + $fixed)
+
+    @include respondTo('height-lg')
+        width: round($width * $h-lg-multiplier + $fixed)
+
+    @include respondTo('height-xl')
+        width: $width + $fixed
+
+// set height against view height
+@mixin scaleHeight($height, $fixed: 0)
+    height: round($height * $h-sm-multiplier + $fixed)
+
+    @include respondTo('height-md')
+        height: round($height * $h-md-multiplier + $fixed)
+
+    @include respondTo('height-lg')
+        height: round($height * $h-lg-multiplier + $fixed)
+
+    @include respondTo('height-xl')
+        height: $height + $fixed
+
+// set max-width against view height
+@mixin scaleMaxWidth($width, $fixed: 0)
+    max-width: round($width * $h-sm-multiplier + $fixed)
+
+    @include respondTo('height-md')
+        max-width: round($width * $h-md-multiplier + $fixed)
+
+    @include respondTo('height-lg')
+        max-width: round($width * $h-lg-multiplier + $fixed)
+
+    @include respondTo('height-xl')
+        max-width: $width + $fixed
+
+// set min-width against view height
+@mixin scaleMinWidth($width, $fixed: 0)
+    min-width: round($width * $h-sm-multiplier + $fixed)
+
+    @include respondTo('height-md')
+        min-width: round($width * $h-md-multiplier + $fixed)
+
+    @include respondTo('height-lg')
+        min-width: round($width * $h-lg-multiplier + $fixed)
+
+    @include respondTo('height-xl')
+        min-width: $width + $fixed
+
+// set max-height against view height
+@mixin scaleMaxHeight($height, $fixed: 0)
+    max-height: round($height * $h-sm-multiplier + $fixed)
+
+    @include respondTo('height-md')
+        max-height: round($height * $h-md-multiplier + $fixed)
+
+    @include respondTo('height-lg')
+        max-height: round($height * $h-lg-multiplier + $fixed)
+
+    @include respondTo('height-xl')
+        max-height: $height + $fixed
+
+// set min-height against view height
+@mixin scaleMinHeight($height, $fixed: 0)
+    min-height: round($height * $h-sm-multiplier + $fixed)
+
+    @include respondTo('height-md')
+        min-height: round($height * $h-md-multiplier + $fixed)
+
+    @include respondTo('height-lg')
+        min-height: round($height * $h-lg-multiplier + $fixed)
+
+    @include respondTo('height-xl')
+        min-height: $height + $fixed
+
+// section caption text style
+@mixin sectionCaptionText($fontSize: $section-caption-text, $topMargin: 20px, $lineHeight: 1.27, $letterSpacing: -5px)
+    margin: 0
+    @include responsiveHeightText($fontSize)
+    line-height: $lineHeight
+    letter-spacing: $letterSpacing
+    font-family: 'Circular Std'
+    font-weight: 900
+    overflow: hidden
+
+    &:first-of-type
+        margin-top: $topMargin
+
+    &:last-of-type
+        margin-bottom: 20px
+
+// mobile section caption text style
+@mixin mobileSectionCaptionText($fontSize: $mobile-section-caption-text)
+    margin: 0
+    padding-bottom: .07em
+    font-size: $fontSize
+    line-height: 1.11
+    letter-spacing: -2.16px
+    font-family: 'Circular Std'
+    font-weight: 900
+    text-align: center
+
+// section subcaption text style
+@mixin sectionSubcaptionText
+    padding-right: 10vh
+    color: $mild-gray
+    @include responsiveHeightText($section-subcaption-text)
+    line-height: 2
+    letter-spacing: -.4px
+    font-weight: 300
+    overflow: hidden
+
+// mobile section subcaption text style
+@mixin mobileSectionSubcaptionText
+    margin-top: 10px
+    font-size: $regular-text
+    line-height: 1.5
+    font-weight: 300
+    text-align: center
+
+// mobile modal content nav style
+@mixin mobileModalContentNav
+    position: fixed
+    top: 0
+    left: calc(8vw + 85px)
+    height: $mobile-nav-height
+    display: flex
+    align-items: center
+
+    @include respondTo('size-xs')
+        left: calc(8vw + 105px)
+
+// Create grid container
+@mixin gridContainer($columns)
+    width: calc(10vh * #{$columns})
+    height: 100vh
+    display: grid
+    grid-template-columns: repeat(#{$columns}, 10vh)
+    grid-template-rows: repeat(10, 10vh)
+
+@mixin innerGridContainer($columns)
+    display: grid
+    grid-template-columns: repeat(#{$columns}, auto)
+    position: relative
+
+// responsive font size based on view height
+@mixin responsiveHeightText($fontSize)
+    font-size: round($fontSize * $h-sm-multiplier)
+
+    @include respondTo('height-md')
+        font-size: round($fontSize * $h-md-multiplier)
+
+    @include respondTo('height-lg')
+        font-size: round($fontSize * $h-lg-multiplier)
+
+    @include respondTo('height-xl')
+        font-size: $fontSize
+
+// responsive grid layout fot modal container
+@mixin responsiveModalGrid($col1, $col2, $colGap)
+    display: grid
+    max-width: round(($col1 + $col2) * $h-sm-multiplier) + $colGap
+    grid-template-columns: round($col1 * $h-sm-multiplier) calc(100% - #{round($col1 * $h-sm-multiplier) + $colGap})
+    grid-column-gap: $colGap
+
+    @include respondTo('height-md')
+        max-width: round(($col1 + $col2) * $h-md-multiplier) + $colGap
+        grid-template-columns: round($col1 * $h-md-multiplier) calc(100% - #{round($col1 * $h-md-multiplier) + $colGap})
+
+    @include respondTo('height-lg')
+        max-width: round(($col1 + $col2) * $h-lg-multiplier) + $colGap
+        grid-template-columns: round($col1 * $h-lg-multiplier) calc(100% - #{round($col1 * $h-lg-multiplier) + $colGap})
+
+    @include respondTo('height-xl')
+        max-width: $col1 + $col2 + $colGap
+        grid-template-columns: $col1 calc(100% - #{$col1 + $colGap})
+
+// responsive font size for modal title
+@mixin modalTitle($fontSize: $modal-title-text)
+    margin: 0
+    @include responsiveHeightText($fontSize)
+    line-height: 1.25
+    letter-spacing: -4.44px
+    font-family: 'Circular Std'
+    font-weight: 900
+    overflow: hidden
+
+    & > span
+        display: inline-block
+
+// nth child animation delay for multiple children
+@mixin nthAnimationDelay($base, $increment, $length)
+    @for $i from 1 through $length
+        &:nth-child(#{$i})
+            animation-delay: $base + ($increment * $i)
+
+// Add before pseudo element with content and other properties
+@mixin before($content: '')
+    &:before
+        content: $content
+        @content
+
+// Add before pseudo element with content and other properties
+@mixin after($content: '')
+    &:after
+        content: $content
+        @content
+
+// Create button class
+@mixin button($textColor, $passiveColor, $hoverColor)
+    color: $textColor
+    background: $passiveColor
+
+    &:hover
+        background: $hoverColor
+
+    &:focus
+        background: $hoverColor
+
+// Apply styles that are the same for hover|focus|active state for buttons
+@mixin hoverFocusActiveState
+    &:hover
+        @content
+    &:focus
+        @content
+    &:active
+        @content
+
+@mixin placeHolderStyle
+    &::-webkit-input-placeholder
+        @content
+    &:-ms-input-placeholder
+        @content
+    &::-moz-placeholder
+        @content
+    &:-moz-placeholder
+        @content
+
+@mixin ellipsis
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
