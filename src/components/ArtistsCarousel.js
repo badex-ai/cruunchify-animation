@@ -79,7 +79,8 @@ import RadialProgress from '../../vectors/RadialProgress';
       activateGlow(false);
       if(!hasEnteredCard){
         this.setState({
-          
+          audioState: 'loading',
+          hasEnteredCard: true
         })
       }
 
@@ -241,11 +242,14 @@ import RadialProgress from '../../vectors/RadialProgress';
   
 
       return (
-        <div>
+        <div className={cx(artistsCarouselContainer, {
+          [isPassiveCarousel]: isPassive,
+          [carouselEntrance]: animateArtist
+        })}>
           <Drumpads total= {54}/>
           <div
           key={`artist-card=${cardKayNumber}`} 
-          className={cx(artsistCard,{
+          className={cx(artistCard, {
             [loadingNextArtist]: nextArtists.length
           })}
           onMouseEnter={this.onMouseEnter}
@@ -298,7 +302,7 @@ import RadialProgress from '../../vectors/RadialProgress';
                 </div>
               ))
             }
-            {!disableToggleAudioBg && <span className={audioToggleg}/>}
+            {!disableToggleAudioBg && <span className={audioToggleBg}/>}
             <span className={audioToggle} onClick={this.togglePlayState}>
               <AudioControl audioState={audioState}/>
             </span>
@@ -317,7 +321,9 @@ import RadialProgress from '../../vectors/RadialProgress';
             <span className={cx(cardGlow,{[cardGlowActive]: cardActive})}/>
             <div
             onMouseEnter={()=>this.setPlaylistOvalActive(true)}
-            onMouseLeave={()=>this.setPlaylistOvalActive(true)}>
+            onMouseLeave={()=>this.setPlaylistOvalActive(true)}
+            className={cx(explorePlaylist, { [expandable]: canExpandPlaylist })}
+            >
               <span className={danceIcon}>
                 <DanceIcon/>
               </span>
@@ -336,7 +342,7 @@ import RadialProgress from '../../vectors/RadialProgress';
 
             {/* this is the sectio for the right side of the images */}
             <div className={cx(ArtistFeaturedTrack,{
-              [loadNextArtist]: lastNextArtist
+              [loadNextTrack]: lastNextArtist
             })} key={secondToLastNextArtist ? secondToLastNextArtist.key : 0} className={artistFeaturedAlbumCover}>
               <div>
                 <div style={{backgroundImage: `url(${getImageUrl(
@@ -350,7 +356,7 @@ import RadialProgress from '../../vectors/RadialProgress';
             {lastNextArtist && (
               <div
               key={lastNextArtist.key}
-              className={newxtArtistFearuredAlbumCover}>
+              className={nextArtistFeaturedAlbumCover}>
                 <div 
                 style={{
                   backgroundImage: `url(${getImageUrl(
@@ -360,7 +366,7 @@ import RadialProgress from '../../vectors/RadialProgress';
               </div>
             )}
 
-            <div className={fearuredTrackData}>
+            <div className={featuredTrackData}>
               <div
               key={secondToLastNextArtist ? secondToLastNextArtist.key: 0}
               className={trackDetails}>
